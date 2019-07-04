@@ -1,0 +1,18 @@
+input.onGesture(Gesture.FaceDown, function () {
+    music.playSound(music.sounds(Sounds.PowerDown))
+    strip.setAll(0x000000)
+})
+input.onGesture(Gesture.FaceUp, function () {
+    music.playSound(music.sounds(Sounds.PowerUp))
+    for (let i = 0; i < 4; i++) {
+        strip.setAll(0x000000)
+        pause(100)
+        strip.setAll(0xffffff)
+        pause(100)
+    }
+    light.showAnimation(light.sparkleAnimation, 2000)
+    light.setAll(0x000000)
+})
+let strip: light.NeoPixelStrip = null
+strip = light.createStrip(pins.A1, 32)
+strip.setBrightness(200)
